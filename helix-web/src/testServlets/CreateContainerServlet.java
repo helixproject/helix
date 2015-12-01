@@ -5,24 +5,19 @@ import implementations.DAOFactory;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.util.security.MD5Encoder;
-
-import dockerLogic.ContainerManager;
-import sun.security.provider.MD5;
 import model.Container;
 import model.Customer;
 import model.User;
+import dockerLogic.ContainerManager;
 
 /**
- * Servlet implementation class Servlet1
+ * Servlet implementation class CreateContainerServlet
  */
 @WebServlet("/CreateContainerServlet")
 public class CreateContainerServlet extends HttpServlet {
@@ -40,10 +35,7 @@ public class CreateContainerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServletContext context = this.getServletContext();
-		RequestDispatcher dispatcher = context.getRequestDispatcher("/Servlet2");
-		
-		dispatcher.forward(request, response);
+		// TODO Auto-generated method stub
 	}
 
 	/**

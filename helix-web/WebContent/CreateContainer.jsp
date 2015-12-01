@@ -11,7 +11,7 @@
 		<div class="page-header">
 		<h1>Create container</h1>
 		</div>
-		<form data-toggle="validator" class="form-horizontal" action="/CreateContainerServlet" method="post" novalidate>
+		<form data-toggle="validator" class="form-horizontal" action="CreateContainerServlet" method="post" novalidate>
 		
 		<div class = "form-group">
 		<div class="col-xs-3">
@@ -35,9 +35,9 @@
 		<div class="col-xs-3">
 		<label for="memory">Memory:</label>
 		<select class="form-control" name="ram" required>
-		<option>512MB RAM</option>
-		<option>1GB RAM</option>
-		<option>2GB RAM</option>
+		<option value="512">512MB RAM</option>
+		<option value="1024">1GB RAM</option>
+		<option value="2048">2GB RAM</option>
 		</select>
 		</div>
 		</div>
