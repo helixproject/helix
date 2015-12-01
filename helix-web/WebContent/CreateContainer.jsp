@@ -16,7 +16,7 @@
 		<div class = "form-group">
 		<div class="col-xs-3">
 		<label for="container_name">Container name:</label>
-		<input type="text" class="form-control" name="container_name" required />
+		<input type="text" class="form-control" name="name" required />
 		<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 		</div>
 		</div>
@@ -25,8 +25,8 @@
 		<div class="col-xs-3">
 		<label for="cpu">CPU:</label>
 		<select class="form-control" name="cpu" required>
-		<option>1 core</option>
-		<option>2 core</option>
+		<option value="1">1 GHZ</option>
+		<option value="2">2 GHZ</option>
 		</select>
 		</div>
 		</div>
@@ -34,23 +34,14 @@
 		<div class = "form-group">
 		<div class="col-xs-3">
 		<label for="memory">Memory:</label>
-		<select class="form-control" name="memory" required>
+		<select class="form-control" name="ram" required>
 		<option>512MB RAM</option>
 		<option>1GB RAM</option>
 		<option>2GB RAM</option>
 		</select>
 		</div>
 		</div>
-		
-		<div class = "form-group">
-		<div class="col-xs-3">
-		<label for="storage">Storage:</label>
-		<select class="form-control" name="storage" required>
-		<option>1GB</option>
-		<option>2GB</option>
-		</select>
-		</div>
-		</div>
+	
 		
 		<div class = "form-group">
 		<div class="col-xs-3">

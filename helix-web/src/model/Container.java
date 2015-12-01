@@ -9,14 +9,12 @@ public class Container {
 	private String ip ;
 	private User user;
 	
-	public Container(String name, int cpu, int ram, String status, String ip,
-			User user) {
+	public Container(String name, int cpu, int ram, String status,User user) {
 		super();
 		this.name = name;
 		this.cpu = cpu;
 		this.ram = ram;
 		this.status = status;
-		this.ip = ip;
 		this.user = user;
 	}
 	public String getName() {

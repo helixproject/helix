@@ -27,14 +27,14 @@ public class CreateContainerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("hhh");
 		String name = (String)request.getAttribute("container_name");
 		String cpu = (String)request.getAttribute("cpu");
 		String memory = (String)request.getAttribute("memory");
 		String storage = (String)request.getAttribute("storage");
 		String webserver = (String)request.getAttribute("webserver");
 		String database = (String)request.getAttribute("database");
-		Container c = new Container(name, cpu, memory, storage, webserver, database);
+		//Container c = new Container(name, cpu, memory, storage, webserver, database);
 		
 	}
 
