@@ -11,7 +11,7 @@
 		<div class="page-header">
 		<h1>Create container</h1>
 		</div>
-		<form data-toggle="validator" class="form-horizontal" action="create_container_servlet" method="post" novalidate>
+		<form data-toggle="validator" class="form-horizontal" action="/CreateContainerServlet" method="post" novalidate>
 		
 		<div class = "form-group">
 		<div class="col-xs-3">
