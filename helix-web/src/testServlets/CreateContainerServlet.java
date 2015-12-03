@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Container;
 import model.Customer;
 import model.User;
-import dockerLogic.ContainerManager;
+import dockerLogic.ShellManager;
 
 /**
  * Servlet implementation class CreateContainerServlet
@@ -50,7 +50,7 @@ public class CreateContainerServlet extends HttpServlet {
 		User user=(User) request.getSession().getAttribute("user");
 		
 		Container container=new Container(name, cpu, ram,"down", user);
-		new ContainerManager().createContainer(container);
+		new ShellManager().createContainer(container);
 		new ContainerDaoImpl(DAOFactory.getInstance()).persistContainer(container);
 	}
 
