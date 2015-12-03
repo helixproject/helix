@@ -1,12 +1,11 @@
 package model;
 
 public class Container {
-	
+	private String id;
 	private String name ;
 	private int cpu ;
 	private int ram ;
 	private String status ;
-	private String idContainerSurDocker ;
 	private String ip ;
 	private User user;
 	
@@ -18,14 +17,7 @@ public class Container {
 		this.status = status;
 		this.user = user;
 	}
-	
-	public String getIdContainerSurDocker() {
-		return idContainerSurDocker;
-	}
-
-	public void setIdContainerSurDocker(String idContainerSurDocker) {
-		this.idContainerSurDocker = idContainerSurDocker;
-	}
+	public Container(){}
 
 	public String getName() {
 		return name;
@@ -62,6 +54,12 @@ public class Container {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 		
