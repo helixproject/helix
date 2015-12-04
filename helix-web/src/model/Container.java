@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Container {
 	private String id;
 	private String name ;
@@ -8,7 +10,14 @@ public class Container {
 	private String status ;
 	private String ip ;
 	private User user;
+	private List<Service> services;
 	
+	public List<Service> getServices() {
+		return services;
+	}
+	public void setServices(List<Service> services) {
+		this.services = services;
+	}
 	public Container(String name, int cpu, int ram, String status,User user) {
 		super();
 		this.name = name;

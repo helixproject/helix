@@ -12,23 +12,45 @@ public class ShellManager implements ContainerManagement {
 		String[] result=execOnShell(commands);
 		container.setId(result[0]);
 		
-		//debug
 		System.out.println("output >> "+result[0]);
 		System.out.println("errors >> "+result[1]);
 	}
 	
 	public int startContainer(Container container) {
-		// TODO Auto-generated method stub
+		String[] commands = {"docker","start",container.getId()};
+		String[] result=execOnShell(commands);
+		System.out.println("output >> "+result[0]);
+		System.out.println("errors >> "+result[1]);
+		return 0;
+	}
+	public int pauseContainer(Container container) {
+		String[] commands = {"docker","pause",container.getId()};
+		String[] result=execOnShell(commands);
+		System.out.println("output >> "+result[0]);
+		System.out.println("errors >> "+result[1]);
+		return 0;
+	}
+	public int unpauseContainer(Container container) {
+		String[] commands = {"docker","unpause",container.getId()};
+		String[] result=execOnShell(commands);
+		System.out.println("output >> "+result[0]);
+		System.out.println("errors >> "+result[1]);
 		return 0;
 	}
 
 	public int stopContainer(Container container) {
-		// TODO Auto-generated method stub
+		String[] commands = {"docker","stop",container.getId()};
+		String[] result=execOnShell(commands);
+		System.out.println("output >> "+result[0]);
+		System.out.println("errors >> "+result[1]);
 		return 0;
 	}
 
 	public int deleteContainer(Container container) {
-		// TODO Auto-generated method stub
+		String[] commands = {"docker","rm",container.getId()};
+		String[] result=execOnShell(commands);
+		System.out.println("output >> "+result[0]);
+		System.out.println("errors >> "+result[1]);
 		return 0;
 	}
 	
