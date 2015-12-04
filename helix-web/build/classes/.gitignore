@@ -1,3 +1,10 @@
-/dockerLogic
-/model
-/security
+/controller/
+/dao.properties
+/daoErrors/
+/dockerLogic/
+/implementations/
+/interfaces/
+/main/
+/model/
+/security/
+/shellLogic/
