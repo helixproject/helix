@@ -1,17 +1,25 @@
 package controller;
 
+import implementations.ContainerDaoImpl;
+import implementations.DAOFactory;
+
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.*;
+
+import model.Container;
+import model.Customer;
+import model.User;
+import dockerLogic.ContainerManager;
 
 /**
  * Servlet implementation class CreateContainerServlet
  */
-@WebServlet("/create_container_servlet")
+@WebServlet("/CreateContainerServlet")
 public class CreateContainerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,22 +35,23 @@ public class CreateContainerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("hhh");
-		String name = (String)request.getAttribute("container_name");
-		String cpu = (String)request.getAttribute("cpu");
-		String memory = (String)request.getAttribute("memory");
-		String storage = (String)request.getAttribute("storage");
-		String webserver = (String)request.getAttribute("webserver");
-		String database = (String)request.getAttribute("database");
-		//Container c = new Container(name, cpu, memory, storage, webserver, database);
-		
+		new ContainerManager().createContainer(new Container());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String name=request.getParameter("name");
+		int cpu=Integer.parseInt(request.getParameter("cpu"));
+		int ram=Integer.parseInt(request.getParameter("ram"));
+		
+		request.getSession().setAttribute("user",new Customer("test","xAZWALS554aZza","gold"));
+		User user=(User) request.getSession().getAttribute("user");
+		
+		Container container=new Container(name, cpu, ram,"down", user);
+		new ContainerManager().createContainer(container);
+		new ContainerDaoImpl(DAOFactory.getInstance()).persistContainer(container);
 	}
 
 }
