@@ -9,14 +9,22 @@ public class Container {
 	private int ram ;
 	private String status ;
 	private String ip ;
+	private String image;
+	private int port;
 	private User user;
-	private List<Service> services;
 	
-	public List<Service> getServices() {
-		return services;
+	
+	public String getImage() {
+		return image;
 	}
-	public void setServices(List<Service> services) {
-		this.services = services;
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public int getPort() {
+		return port;
+	}
+	public void setPort(int port) {
+		this.port = port;
 	}
 	public Container(String name, int cpu, int ram, String status,User user) {
 		super();

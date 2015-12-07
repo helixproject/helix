@@ -15,6 +15,8 @@ CREATE TABLE IF NOT EXISTS Containers(
 	cpu Integer,
 	status Varchar(255),
 	login Varchar(255),
+	image Varchar(255),
+	port Integer,
 	PRIMARY KEY(idContainer),
 	FOREIGN KEY(login) REFERENCES Users(login)
 );

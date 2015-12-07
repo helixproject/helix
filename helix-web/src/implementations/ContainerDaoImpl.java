@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import daoErrors.DAOException;
 import model.Container;
@@ -17,22 +18,21 @@ public class ContainerDaoImpl implements ContainerDao {
 	public ContainerDaoImpl( DAOFactory daoFactory ) {
         this.daoFactory = daoFactory;
     }
-	
-	
+
 	@Override
 	public void persistContainer(Container container) throws DAOException {
 		Connection connexion = null;
 		PreparedStatement preparedStatement = null;
 		 try {
 		        connexion = daoFactory.getConnection();
-		        preparedStatement = connexion.prepareStatement("insert into Containers(name,ip,ram,cpu,status,login) values(?,?,?,?,?,?)");	        
-		        
-		        preparedStatement.setString(1,container.getName());
-		        preparedStatement.setString(2,container.getIp());
-		        preparedStatement.setInt(3,container.getRam());
-		        preparedStatement.setInt(4,container.getCpu());
-		        preparedStatement.setString(5,container.getStatus());
-		        preparedStatement.setString(6,container.getUser().getLogin());
+		        preparedStatement = connexion.prepareStatement("insert into Containers(idContainer,name,ip,ram,cpu,status,login) values(?,?,?,?,?,?,?)");	        
+		        preparedStatement.setString(1,container.getId());
+		        preparedStatement.setString(2,container.getName());
+		        preparedStatement.setString(3,container.getIp());
+		        preparedStatement.setInt(4,container.getRam());
+		        preparedStatement.setInt(5,container.getCpu());
+		        preparedStatement.setString(6,container.getStatus());
+		        preparedStatement.setString(7,container.getUser().getLogin());
 		        
 		        int statut = preparedStatement.executeUpdate();
 		       System.out.println("statut = "+statut);
@@ -97,6 +97,12 @@ public class ContainerDaoImpl implements ContainerDao {
 	    fermetureSilencieuse( statement );
 	    fermetureSilencieuse( connexion );
 	}
+
+	public List<Container> uploadAllContainer(String type) throws DAOException {
+		
+		return null;
+	}
+
 
 	
 }
