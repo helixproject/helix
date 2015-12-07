@@ -25,7 +25,7 @@ public class ContainerDaoImpl implements ContainerDao {
 		PreparedStatement preparedStatement = null;
 		 try {
 		        connexion = daoFactory.getConnection();
-		        preparedStatement = connexion.prepareStatement("insert into Containers(idContainer,name,ip,ram,cpu,status,login) values(?,?,?,?,?,?,?)");	        
+		        preparedStatement = connexion.prepareStatement("insert into Containers(idContainer,name,ip,ram,cpu,status,login,image,port) values(?,?,?,?,?,?,?,?,?)");	        
 		        preparedStatement.setString(1,container.getId());
 		        preparedStatement.setString(2,container.getName());
 		        preparedStatement.setString(3,container.getIp());
@@ -33,6 +33,8 @@ public class ContainerDaoImpl implements ContainerDao {
 		        preparedStatement.setInt(5,container.getCpu());
 		        preparedStatement.setString(6,container.getStatus());
 		        preparedStatement.setString(7,container.getUser().getLogin());
+		        preparedStatement.setString(8,container.getImage());
+		        preparedStatement.setInt(9,container.getPort());
 		        
 		        int statut = preparedStatement.executeUpdate();
 		       System.out.println("statut = "+statut);
