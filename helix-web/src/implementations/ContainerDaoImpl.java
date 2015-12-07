@@ -8,10 +8,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
-import daoErrors.DAOException;
+import model.Admin;
 import model.Container;
+import model.Customer;
+import model.User;
+import daoErrors.DAOException;
 
 public class ContainerDaoImpl implements ContainerDao {
 	private DAOFactory daoFactory;
@@ -46,11 +50,97 @@ public class ContainerDaoImpl implements ContainerDao {
 		    }
 		
 	}
+	public List<Container> uploadAllContainer(User user) throws DAOException {
 
-	@Override
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+		List<Container> containers=new ArrayList<Container>();
+		 try {
+		        connexion = daoFactory.getConnection();
+		        Customer customer=null;
+		        Admin admin=null;
+		        String type;
+		        try{
+		        	customer=(Customer)user;
+		        	type="customer";
+		        }
+		        catch(Exception e){
+		        	admin=(Admin)user;
+		        	type="admin";
+		        }
+		        String selectSQL = null;
+		        if(type.equals("customer")){
+		        	selectSQL = "select * from Containers where login=?";
+		        	preparedStatement = connexion.prepareStatement(selectSQL);
+					preparedStatement.setString(1,user.getLogin());
+		        	
+		        }
+		        else if(type.equals("admin")){
+		        	selectSQL = "select * from Containers";
+		        	preparedStatement = connexion.prepareStatement(selectSQL);
+		        }
+		        		
+		        ResultSet rs = preparedStatement.executeQuery(selectSQL );
+		        while (rs.next()) {
+		        	String id=rs.getString("idContainer");
+		        	int cpu=rs.getInt("cpu");
+		        	int ram=rs.getInt("ram");
+		        	String status=rs.getString("status");
+		        	String ip=rs.getString("ip");
+		        	String image=rs.getString("image");
+		        	int port=rs.getInt("port");
+		        	String name=rs.getString("name");
+		        	String login=rs.getString("login");							
+		        	//have to implement following
+		        	User owner=new UserDaoImpl(daoFactory).uploadUser(login);		
+		        	containers.add(new Container(id, name, cpu, ram, status, ip, image, port, owner));
+
+		        }
+		        
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {    	
+		        fermeturesSilencieuses(preparedStatement, connexion );
+		        return containers;
+		    }
+	}
+
+	
 	public Container uploadContainer(int idContainer) throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+		Container container=null;
+		 try {
+		        connexion = daoFactory.getConnection();		     	        
+		        String selectSQL = "select * from Containers where idContainer=?";
+				preparedStatement = connexion.prepareStatement(selectSQL);
+				preparedStatement.setInt(1,idContainer);
+				ResultSet rs = preparedStatement.executeQuery(selectSQL );
+				if (rs.next()) {
+					String id=rs.getString("idContainer");
+					int cpu=rs.getInt("cpu");
+					int ram=rs.getInt("ram");
+					String status=rs.getString("status");
+					String ip=rs.getString("ip");
+					String image=rs.getString("image");
+					int port=rs.getInt("port");
+					String name=rs.getString("name");
+					String login=rs.getString("login");
+					
+					//have to implement following
+					User user=new UserDaoImpl(daoFactory).uploadUser(login);
+					
+					container=new Container(id, name, cpu, ram, status, ip, image, port, user);
+					
+				}
+		       
+		    } catch ( SQLException e ) {
+		        throw new DAOException( e );
+		    } finally {    	
+		        fermeturesSilencieuses(preparedStatement, connexion );
+		        return container;
+		    }
 	}
 
    
@@ -99,12 +189,4 @@ public class ContainerDaoImpl implements ContainerDao {
 	    fermetureSilencieuse( statement );
 	    fermetureSilencieuse( connexion );
 	}
-
-	public List<Container> uploadAllContainer(String type) throws DAOException {
-		
-		return null;
-	}
-
-
-	
 }

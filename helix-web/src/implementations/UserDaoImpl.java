@@ -53,10 +53,8 @@ public class UserDaoImpl implements UserDao {
 	}
 
 
-	@Override
 	public User uploadUser(String login) throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+		return new Customer("customer","7c2ab87a34395892f10413db233c6420","gold");
 	}	
 	
 

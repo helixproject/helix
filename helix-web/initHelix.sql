@@ -20,14 +20,6 @@ CREATE TABLE IF NOT EXISTS Containers(
 	PRIMARY KEY(idContainer),
 	FOREIGN KEY(login) REFERENCES Users(login)
 );
-CREATE TABLE IF NOT EXISTS Services(
-	idService Integer AUTO_INCREMENT,
-	name Varchar(255),
-	status Integer,
-	type Varchar(255),
-	idContainer Varchar(255),
-	PRIMARY KEY(idService),
-	FOREIGN KEY(idContainer) REFERENCES Containers(idContainer)
-);
+
 insert into Users(login,hashedPassword,type) values("admin","7c2ab87a34395892f10413db233c6420","admin");
 insert into Users values("customer","7c2ab87a34395892f10413db233c6420","gold","customer");

@@ -78,6 +78,19 @@ public class Container {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public Container(String id, String name, int cpu, int ram, String status,
+			String ip, String image, int port, User user) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.cpu = cpu;
+		this.ram = ram;
+		this.status = status;
+		this.ip = ip;
+		this.image = image;
+		this.port = port;
+		this.user = user;
+	}
 	
 		
 }
