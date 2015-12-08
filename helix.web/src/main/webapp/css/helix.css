@@ -1,0 +1,12 @@
+i.fa-play {
+	color: #449D44;
+}
+i.fa-stop {
+	color: #D9534F;
+}
+i.fa-pause {
+	color: black;
+}
+td.table-actions {
+	text-align: right;
+}
