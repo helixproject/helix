@@ -1,9 +1,9 @@
 package interfaces;
-
-import daoErrors.DAOException;
 import model.User;
 
 public interface UserDao {
-    void persistUser(User user,String type) throws DAOException;
-    User uploadUser(String login) throws DAOException;
+    void persistUser(User user);
+    User uploadUser(String login,String password);
+    public void modifyUser(User user);
+    public void removeUser(User user);
 }

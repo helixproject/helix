@@ -3,12 +3,14 @@ package interfaces;
 import java.util.List;
 
 import model.Container;
+import model.Customer;
 import model.User;
-import daoErrors.DAOException;
 
 public interface ContainerDao {
-    void persistContainer(Container container) throws DAOException;
-    Container uploadContainer(int idContainer) throws DAOException;
-    //type is either an admin or a customer
-    List<Container> uploadAllContainer(User user) throws DAOException;
+    void persistContainer(Container container);
+    Container uploadContainer(int idDocker);
+    List<Container> uploadAllContainer();
+    List<Container> uploadAllContainerOfUser(Customer customer);
+    public void modifyContainer(Container container);
+    public void removeContainer(Container container);
 }

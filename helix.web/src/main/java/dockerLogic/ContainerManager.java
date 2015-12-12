@@ -6,14 +6,15 @@ import shellLogic.*;
 public class ContainerManager implements ContainerManagement {
 
 	public void createContainer(Container container) {
-		String[] commands = {"docker","create","-e","MYSQL_ROOT_PASSWORD=default","mysql"};
-		String[] result=ShellManager.execOnShell(commands);
-		container.setId(result[0]);
-		//debug
-		/*
-		System.out.println("oContainerManager >> "+result[0]);
-		System.out.println("errors >> "+result[1]);
-		*/
+		if(container.getImage().equals("tomcat")){
+			TomcatManagement t=new TomcatManager();
+			container.setId(t.createTomcat(container.getInitPassword()));
+		}
+		else if(container.getImage().equals("mysql")){
+			MysqlManagement t=new MysqlManager();
+			container.setId(t.createMysql(container.getInitPassword()));
+		}
+
 	}
 	
 	public int startContainer(Container container) {
