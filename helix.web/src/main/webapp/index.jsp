@@ -1,66 +1,59 @@
 <!doctype html>
-<%@page import="controller.RefreshTable"%>
 <html lang="en">
 <head>
-<%@ include file="navbar.jsp" %>
-<!-- this is just for testing -->
-
-<title>Dashboard</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<%@ include file="navbar.jsp" %>
+    <title>Helix - Cloud service provider</title>
 </head>
 <body>
+<div class="container">
+<header class="jumbotron spacer">
+<h3>Deploy your application right away.</h3>
+            <p>Helix offers high availability docker-based cloud services.</p>
+            <p><a class="btn btn-primary btn-large">About Helix</a>
+            </p>
+        </header>
+        <hr>
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Services</h3>
+                <br>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-5 col-sm-6 service">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/800x300">
+                    <div class="caption">
+                        <h3>Free</h3>
+                        <p>The best way to try Helix cloud service</p>
+                        <p>
+                            <a href="signup.jsp" class="btn btn-primary">Sign up</a> <a href="services.jsp" class="btn btn-default">Learn more</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-<!-- this is just for testing -->
-
-	<div class="container">
-		<div class="page-header">
-			<h1>Dashboard</h1>
-		</div>
-		<a href="CreateContainer.jsp" role="button" class="btn btn-primary btn-large">Create container</a>
-		<div class="row spacer">
-			<div class="span4"></div>
-		</div>
-		<br/>
-
-		<table class="table table-striped table-hover" id="containers">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>?</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-		</table>
-	</div>
+            <div class="col-md-5 col-sm-6 service">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/800x300">
+                    <div class="caption">
+                        <h3>Pay-as-you-go</h3>
+                        <p>The premium services</p>
+                        <p>
+                        <a href="signup.jsp" class="btn btn-primary">Sign up</a> <a href="services.jsp" class="btn btn-default">Learn more</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Helix 2015</p>
+                </div>
+            </div>
+        </footer>
+    </div>
 </body>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10-dev/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js"></script>
-<script type="text/javascript">
-$(function(){
-	function actionButtons(d) {
-		btnBegin = '<a href="#"><i class="success fa fa-';
-		btnEnd = '"></i></a> &nbsp;';
-		
-		actions = "";
-		if (d.status === "down") {
-			actions += btnBegin + "play" + btnEnd;
-		} else if (d.status === "up") {
-			actions += btnBegin + "stop" + btnEnd;
-			actions += btnBegin + "pause" + btnEnd;
-		}
-		return actions;
-	}
-    $.extend($.fn.dataTable.defaults.oLanguage, {
-        "sLoadingRecords": '<i class="fa fa-spinner fa-spin"></i> Loading...',
-    });
-    $("#containers").dataTable({
-        "ajax": "js/example.json",
-        "columns": [
-            { "data": "name", className: "table-name" },
-            { "data": null, className: "table-status" },
-            { "data": actionButtons, className: "table-actions" },
-        ],
-    }).fadeIn();
-});
-</script>
 </html>

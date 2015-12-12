@@ -9,14 +9,13 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>RefreshTable</display-name>
-    <servlet-name>RefreshTable</servlet-name>
-    <servlet-class>controller.RefreshTable</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>RefreshTable</servlet-name>
-    <url-pattern>/RefreshTable</url-pattern>
-  </servlet-mapping>
+  
+  <context-param> 
+    <description>Location to store uploaded file</description> 
+    <param-name>file-upload</param-name> 
+    <param-value>
+         /home/yuanbo/Desktop/
+     </param-value> 
+</context-param>
+
 </web-app>

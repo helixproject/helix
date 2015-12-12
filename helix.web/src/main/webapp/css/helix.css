@@ -10,3 +10,91 @@ i.fa-pause {
 td.table-actions {
 	text-align: right;
 }
+
+.navbar-default {
+    background-color: #C63D0F;
+    border-color: #E7E7E7;
+}
+
+.navbar-default .navbar-brand {
+    color: #FFFFFF;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #FFFFFF;
+}
+/* link */
+.navbar-default .navbar-nav > li > a {
+    color: #FFFFFF;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #7E8F7C;
+}
+
+.navbar-brand {
+	font-family: 'Oxygen', sans-serif;
+	font-weight: 700;
+}
+
+body {
+	font-family: 'Oxygen', sans-serif;
+    padding-top: 70px;
+}
+
+.p {
+	font-weight: 300;
+}
+
+.spacer {
+    margin-top: 50px;
+}
+
+.service {
+    margin-bottom: 30px;
+}
+
+footer {
+    margin: 50px 0;
+}
+
+.btn {
+    padding: 14px 22px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+ 
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+ 
+.btn-primary {
+    background: #585858;
+    color: #ffffff;
+}
+
+.btn-default {
+	background: #FDF3E7
+    border: 1 none;
+    border-color: #777;
+}
+ 
+.btn-primary:hover, .btn-primary.disabled, .btn-primary.disabled.active, .btn-primary.disabled.focus, .btn-primary.disabled:active, .btn-primary.disabled:focus, .btn-primary.disabled:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #585858;
+}
+ 
+.btn-primary:active, .btn-primary.active {
+    background: #67BCDB;
+    box-shadow: none;
+}
+
+.btn-default:active, .btn-default.active {
+    box-shadow: none;
+}
+
+.report:disabled{
+    opacity: 1;
+    background: #585858;
+    color : white;
+}​
