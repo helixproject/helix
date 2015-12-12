@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Map;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +20,7 @@ public class Container {
 	private String status ;
 	private String ip ;
 	private String image;
-	private int port;
+	private Map<Integer,Integer> portsBindingMap;
 	private String initPassword;
 	@ManyToOne
 	private Customer owner;
@@ -30,15 +32,6 @@ public class Container {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
-	public int getPort() {
-		return port;
-	}
-	
-	public void setPort(int port) {
-		this.port = port;
-	}
-
 
 	public String getName() {
 		return name;
@@ -111,6 +104,14 @@ public class Container {
 
 	public void setIdDocker(String idDocker) {
 		this.idDocker = idDocker;
+	}
+
+	public Map<Integer, Integer> getPortsBindingMap() {
+		return portsBindingMap;
+	}
+
+	public void setPortsBinding(Map<Integer, Integer> portsBindingMap) {
+		this.portsBindingMap = portsBindingMap;
 	}
 	
 		

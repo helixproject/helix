@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import daoImpl.DatabaseConnection;
 import implementations.ContainerDaoImpl;
 import implementations.DAOFactory;
 import implementations.UserDaoImpl;
@@ -18,11 +19,8 @@ public class RefreshTable {
 	
 	public static String getContainerList(){
 		
-		ContainerDaoImpl c = new ContainerDaoImpl(DAOFactory.getInstance());
-		UserDaoImpl u = new UserDaoImpl(DAOFactory.getInstance());
-		List<Container> l = c.uploadAllContainer(u.getUserByLogin("customer"));
-
-		String json = new Gson().toJson(l);
-		return json;
+		//List<Container> listContainers=new daoImpl.ContainerDaoImpl(new DatabaseConnection()).uploadAllContainerOfUser((Customer)request.getAttribute("user")));
+		//String json = new Gson().toJson(listContainers);
+		return "";
 	}
 }

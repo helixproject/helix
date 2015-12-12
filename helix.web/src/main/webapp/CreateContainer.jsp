@@ -45,22 +45,16 @@
 		
 		<div class = "form-group">
 		<div class="col-xs-3">
-		<label for="webserver">Web server:</label>
-		<select class="form-control" name="webserver" required>
+		<label for="Service">Service:</label>
+		<select class="form-control" name="image" required>
 		<option data-hidden="true">none</option>
-		<option>Tomcat 7.0</option>
+		<option value="tomcat">Tomcat</option>
+		<option value="mysql">Mysql</option>
 		</select>
 		</div>
 		</div>
 		
-		<div class = "form-group">
-		<div class="col-xs-3">
-		<label for="database">Database:</label>
-		<select class="form-control" name="database" required>
-		<option data-hidden="true">none</option>
-		<option>MySQL 5.7</option>
-		</select>
-		</div>
+		
 		</div>
 
 		<br/>

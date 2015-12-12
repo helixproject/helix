@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-<%@ include file="navbar.jsp" %>
+<%@ include file="navbar.jsp"%>
 <title>Success</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
 <%
-String output = (String)request.getAttribute("json_output") ;
+String id = (String)request.getAttribute("container") ;
 %>
 
 <body>
@@ -22,8 +22,8 @@ String output = (String)request.getAttribute("json_output") ;
 		<p>Success on creating container: </p>
 		<p>
 		<%
-		out.println("Below is the info of container newly created in JSON format");
-		out.println(output);
+		out.println("Below is the id");
+		out.println(id);
 		%>
 		</p>
 	</div>

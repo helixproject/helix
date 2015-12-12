@@ -8,37 +8,42 @@ public class ContainerManager implements ContainerManagement {
 	public void createContainer(Container container) {
 		if(container.getImage().equals("tomcat")){
 			TomcatManagement t=new TomcatManager();
-			container.setId(t.createTomcat(container.getInitPassword()));
+			container.setIdDocker(t.createTomcat());
 		}
 		else if(container.getImage().equals("mysql")){
 			MysqlManagement t=new MysqlManager();
-			container.setId(t.createMysql(container.getInitPassword()));
+			container.setIdDocker(t.createMysql());
 		}
 
 	}
 	
 	public int startContainer(Container container) {
-		// TODO Auto-generated method stub
+		String[] commands = {"docker","start",container.getIdDocker()};
+		String[] result=ShellManager.execOnShell(commands);
 		return 0;
 	}
 
 	public int stopContainer(Container container) {
-		// TODO Auto-generated method stub
+		String[] commands = {"docker","stop",container.getIdDocker()};
+		String[] result=ShellManager.execOnShell(commands);
 		return 0;
 	}
 
 	public int deleteContainer(Container container) {
-		// TODO Auto-generated method stub
+		String[] commands = {"docker","rm",container.getIdDocker()};
+		String[] result=ShellManager.execOnShell(commands);
 		return 0;
 	}
 
 	public int pauseContainer(Container container) {
-		// TODO Auto-generated method stub
+		String[] commands = {"docker","pause",container.getIdDocker()};
+		String[] result=ShellManager.execOnShell(commands);
 		return 0;
 	}
 
 	public int unpauseContainer(Container container) {
-		// TODO Auto-generated method stub
+		String[] commands = {"docker","unpause",container.getIdDocker()};
+		String[] result=ShellManager.execOnShell(commands);
 		return 0;
 	}
 }

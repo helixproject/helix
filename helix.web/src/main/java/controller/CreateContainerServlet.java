@@ -6,14 +6,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.google.gson.Gson;
+
 import model.Container;
 import model.Customer;
 import model.User;
 import dockerLogic.ContainerManager;
-import implementations.ContainerDaoImpl;
-import implementations.DAOFactory;
-
 @WebServlet("/CreateContainerServlet")
 public class CreateContainerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,20 +28,16 @@ public class CreateContainerServlet extends HttpServlet {
 		String name=request.getParameter("name");
 		int cpu=Integer.parseInt(request.getParameter("cpu"));
 		int ram=Integer.parseInt(request.getParameter("ram"));
-		
-		//User user=(User) request.getSession(true).getAttribute("user");
-		
-		User user = new Customer("customer","7c2ab87a34395892f10413db233c6420","gold");
-		Container container = new Container(name, cpu, ram, "down", user);
-		
+		String image=request.getParameter("image");
+		User user = (User) request.getSession(true).getAttribute("user");
+		Container container=new Container();
+		container.setCpu(cpu);
+		container.setRam(ram);
+		container.setName(name);
+		container.setImage(image);
+		container.setOwner((Customer)user);
 		new ContainerManager().createContainer(container);
-		ContainerDaoImpl a = new ContainerDaoImpl(DAOFactory.getInstance());
-		a.persistContainer(container);
-		
-		Gson gson = new Gson();
-		String container_json = gson.toJson(container);
-		
-    	request.setAttribute("json_output", container_json);
+    	request.setAttribute("container", container.getIdDocker());
     	request.getRequestDispatcher("Success.jsp").forward(request, response);
 	}
 }

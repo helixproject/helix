@@ -5,8 +5,8 @@ import shellLogic.ShellManager;
 public class MysqlManager implements MysqlManagement{
 
 	
-	public String createMysql(String initPassword) {
-		String[] commands = {"docker","create","-e","MYSQL_ROOT_PASSWORD="+initPassword,"mysql"};
+	public String createMysql() {
+		String[] commands = {"docker","create","mysql"};
 		String[] result=ShellManager.execOnShell(commands);
 		return result[0];
 	}
