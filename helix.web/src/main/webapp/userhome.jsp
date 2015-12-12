@@ -55,7 +55,8 @@ $(function(){
     });
     $("#containers").dataTable({
         "ajax": "js/example.json",
-        "columns": [
+        "columns":
+        	[
             { "data": "name", className: "table-name" },
             { "data": null, className: "table-status" },
             { "data": actionButtons, className: "table-actions" },

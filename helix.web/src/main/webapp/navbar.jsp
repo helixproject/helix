@@ -30,6 +30,9 @@
                 <li>
                     <a href="login.jsp">Login</a>
                 </li>
+                                <li>
+                    <a href="services.jsp">Services</a>
+                </li>
                 <li>
                     <a href="about.jsp">About</a>
                 </li>
