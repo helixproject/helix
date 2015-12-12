@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 
 public class Authentificator {
 	
-	public String hashPassword(String password){
+	public static String hashPassword(String password){
 		//this method just has a password in order to do authentification
 		String hashedString="";
 		try {
@@ -19,11 +19,5 @@ public class Authentificator {
 			
 		}
 		return hashedString;
-	}
-	public String isUser(String login,String password){
-		//it will return "customer" , "admin" or "no"
-		String hashedPassword = hashPassword(password);
-		//verify from database if he exists
-		return null;
 	}
 }

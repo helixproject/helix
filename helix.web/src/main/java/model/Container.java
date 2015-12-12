@@ -1,8 +1,17 @@
 package model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Container {
-	
-	private String id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private long id;
+	private String idDocker;
 	private String name ;
 	private int cpu ;
 	private int ram ;
@@ -10,33 +19,10 @@ public class Container {
 	private String ip ;
 	private String image;
 	private int port;
-	private User user;
-	
-	public Container(String name, int cpu, int ram, String status,User user) {
-		super();
-		this.name = name;
-		this.cpu = cpu;
-		this.ram = ram;
-		this.status = status;
-		this.user = user;
-	}
-	
-	public Container(String id, String name, int cpu, int ram, String status,
-			String ip, String image, int port, User user) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.cpu = cpu;
-		this.ram = ram;
-		this.status = status;
-		this.ip = ip;
-		this.image = image;
-		this.port = port;
-		this.user = user;
-	}
-	
-	public Container(){}
-	
+	private String initPassword;
+	@ManyToOne
+	private Customer owner;
+
 	public String getImage() {
 		return image;
 	}
@@ -94,20 +80,38 @@ public class Container {
 		this.ip = ip;
 	}
 	
-	public User getUser() {
-		return user;
-	}
 	
-	public void setUser(User user) {
-		this.user = user;
+	public Customer getOwner() {
+		return owner;
 	}
-	
-	public String getId() {
+
+	public void setOwner(Customer owner) {
+		this.owner = owner;
+	}
+
+	public String getInitPassword() {
+		return initPassword;
+	}
+
+	public void setInitPassword(String initPassword) {
+		this.initPassword = initPassword;
+	}
+
+	public long getId() {
 		return id;
 	}
-	
-	public void setId(String id) {
+
+	public void setId(long id) {
 		this.id = id;
 	}
+
+	public String getIdDocker() {
+		return idDocker;
+	}
+
+	public void setIdDocker(String idDocker) {
+		this.idDocker = idDocker;
+	}
+	
 		
 }

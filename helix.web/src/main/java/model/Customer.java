@@ -1,22 +1,23 @@
 package model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Customer extends User{
 	
-	// type of membership
-	private String type;
-
-	public Customer(String login, String hashedPassword, String type) {
-		super(login, hashedPassword);
-		this.setRole("Customer");
-		this.type = type ;
+	private String account;
+	private String email;
+	public String getAccount() {
+		return account;
 	}
-
-	public String getType() {
-		return type;
+	public void setAccount(String account) {
+		this.account = account;
 	}
-
-	public void setType(String type) {
-		this.type = type;
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 }

@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>helix.web</display-name>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>SignupServlet</display-name>
+  	<servlet-name>SignupServlet</servlet-name>
+  	<servlet-class>controller.SignupServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>LoginServlet</display-name>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<servlet-class>controller.LoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>Verify</display-name>
+  	<servlet-name>Verify</servlet-name>
+  	<servlet-class>controller.Verify</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>SignupServlet</servlet-name>
+  	<url-pattern>
+  	/SignupServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<url-pattern>
+  	/LoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Verify</servlet-name>
+  	<url-pattern>
+  	/Verify</url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

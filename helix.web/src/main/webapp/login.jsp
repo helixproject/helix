@@ -8,7 +8,7 @@
 
 <body>
 	<div class="container">
-		<form data-toggle="validator" class="form-horizontal" action="SignupServlet" method="post" novalidate>
+		<form data-toggle="validator" class="form-horizontal" action="LoginServlet" method="post" novalidate>
 				<div class="page-header">
 		<h1>Log in</h1>
 		</div>

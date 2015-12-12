@@ -34,6 +34,19 @@ public class UserDaoImpl implements UserDao{
 		}
 		return user;
 	}
+	public boolean isUser(String login) {
+		//i have to hash it after..
+		Query query = em.createQuery("Select user from User user where user.login =:login");
+		query.setParameter("login",login);
+		User user;
+		try{
+			user=(User) query.getSingleResult();
+		}
+		catch(Exception e){
+			return false;
+		}
+		return true;
+	}
 	
 	public void modifyUser(User user){
 		em.getTransaction().begin();

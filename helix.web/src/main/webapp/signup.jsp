@@ -31,6 +31,14 @@
 		
 		<div class = "form-group">
 		<div class="col-xs-3">
+		<label for="container_name">Confirm password:</label>
+		<input type="text" class="form-control" name="cpassword" required />
+		<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+		</div>
+		</div>
+		
+		<div class = "form-group">
+		<div class="col-xs-3">
 		<label for="container_name">Email:</label>
 		<input type="text" class="form-control" name="email" required />
 		<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -41,8 +49,8 @@
 		<div class="col-xs-3">
 		<label for="cpu">Account:</label>
 		<select class="form-control" name="account" required>
-		<option value="1">Free</option>
-		<option value="2">Premium</option>
+		<option value="free">Free</option>
+		<option value="premium">Premium</option>
 		</select>
 		</div>
 		</div>

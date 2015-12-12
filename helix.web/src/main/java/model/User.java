@@ -1,32 +1,31 @@
 package model;
 
+import javax.annotation.Generated;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public abstract class User {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id ;
 	
-	private int idUser ;
+	
 	private String login;
 	private String hashedPassword;
-	// whether the user is customer or admin
-	private String role ;
+
 	
-	public User(String login, String hashedPassword) {
-		this.login = login;
-		this.hashedPassword = hashedPassword;
-	}
-	
-	public int getIdUser() {
-		return idUser;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getLogin() {

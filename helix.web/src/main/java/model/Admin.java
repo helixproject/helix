@@ -1,9 +1,9 @@
 package model;
 
-public class Admin extends User{
+import javax.persistence.Entity;
 
-	public Admin(String login, String hashedPassword) {
-		super(login, hashedPassword);
-		this.setRole("Admin");
-	}
+@Entity
+public class Admin extends User{
+	
+	
 }
