@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import model.Container;
 import model.Customer;
 import model.User;
+import daoImpl.ContainerDaoImpl;
+import daoImpl.DatabaseConnection;
 import dockerLogic.ContainerManager;
 @WebServlet("/CreateContainerServlet")
 public class CreateContainerServlet extends HttpServlet {
@@ -24,7 +27,6 @@ public class CreateContainerServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String name=request.getParameter("name");
 		int cpu=Integer.parseInt(request.getParameter("cpu"));
 		int ram=Integer.parseInt(request.getParameter("ram"));
@@ -37,6 +39,7 @@ public class CreateContainerServlet extends HttpServlet {
 		container.setImage(image);
 		container.setOwner((Customer)user);
 		new ContainerManager().createContainer(container);
+		new ContainerDaoImpl(new DatabaseConnection()).persistContainer(container);
     	request.setAttribute("container", container.getIdDocker());
     	request.getRequestDispatcher("Success.jsp").forward(request, response);
 	}

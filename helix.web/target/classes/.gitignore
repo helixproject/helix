@@ -1,10 +1,8 @@
+/META-INF
 /controller
-/implementations
-/interfaces
-/main
-/dockerLogic
 /daoImpl
+/interfaces
 /model
 /security
-/META-INF
 /shellLogic
+/dockerLogic
