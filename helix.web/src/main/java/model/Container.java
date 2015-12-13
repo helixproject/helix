@@ -1,16 +1,14 @@
 package model;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Container {
@@ -24,8 +22,9 @@ public class Container {
 	private String status ;
 	private String ip ;
 	private String image;
-	//@OneToOne(cascade = CascadeType.ALL)
-	//private Map<Integer,Integer> portsBindingMap=new HashMap<Integer,Integer>();
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	List<PortMapper> portmappers;
 	private String initPassword;
 	@ManyToOne
 	private Customer owner;
@@ -111,13 +110,16 @@ public class Container {
 		this.idDocker = idDocker;
 	}
 
-	public Map<Integer, Integer> getPortsBindingMap() {
-		return portsBindingMap;
+	public List<PortMapper> getPortmappers() {
+		return portmappers;
 	}
 
-	public void setPortsBinding(Map<Integer, Integer> portsBindingMap) {
-		this.portsBindingMap = portsBindingMap;
+	public void setPortmappers(List<PortMapper> portmappers) {
+		this.portmappers = portmappers;
 	}
+
+	
+	
 	
 		
 }

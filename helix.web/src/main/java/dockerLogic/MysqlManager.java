@@ -2,7 +2,7 @@ package dockerLogic;
 
 import shellLogic.ShellManager;
 
-public class MysqlManager implements MysqlManagement{
+public class MysqlManager{
 
 	
 	public String createMysql() {

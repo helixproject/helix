@@ -3,16 +3,22 @@ package dockerLogic;
 import model.Container;
 import shellLogic.*;
 
-public class ContainerManager implements ContainerManagement {
+public class ContainerManager{
 
 	public void createContainer(Container container) {
 		if(container.getImage().equals("tomcat")){
-			TomcatManagement t=new TomcatManager();
-			container.setIdDocker(t.createTomcat());
+			String id=new TomcatManager().createTomcat(container);
+			id=id.substring(0,id.length()-1);
+			container.setIdDocker(id);
+			container.setStatus("created");
+			
+			
+			
+			
 		}
 		else if(container.getImage().equals("mysql")){
-			MysqlManagement t=new MysqlManager();
-			container.setIdDocker(t.createMysql());
+			container.setIdDocker(new MysqlManager().createMysql());
+			container.setStatus("created");
 		}
 
 	}
@@ -26,6 +32,7 @@ public class ContainerManager implements ContainerManagement {
 	public int stopContainer(Container container) {
 		String[] commands = {"docker","stop",container.getIdDocker()};
 		String[] result=ShellManager.execOnShell(commands);
+		container.setStatus("Down");
 		return 0;
 	}
 
@@ -38,12 +45,14 @@ public class ContainerManager implements ContainerManagement {
 	public int pauseContainer(Container container) {
 		String[] commands = {"docker","pause",container.getIdDocker()};
 		String[] result=ShellManager.execOnShell(commands);
+		container.setStatus("paused");
 		return 0;
 	}
 
 	public int unpauseContainer(Container container) {
 		String[] commands = {"docker","unpause",container.getIdDocker()};
 		String[] result=ShellManager.execOnShell(commands);
+		container.setStatus("Up");
 		return 0;
 	}
 }
