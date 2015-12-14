@@ -16,10 +16,14 @@ public class PortMapperDaoImpl implements PortMapperDao{
 
 	public int getMaxPort() {
 		Query query = em.createQuery("Select max(p.externalPort) from PortMapper p");
-		int max=(Integer) query.getSingleResult();
-		if(max==0)
+		Integer maxx;
+		try{
+			maxx= (Integer) query.getSingleResult();
+			return maxx.intValue();
+		}
+		catch(Exception e){
 			return initPort;
-		return max;
+		}
 	}
 
 	public void persistPortMapper(PortMapper portmapper) {

@@ -8,7 +8,7 @@ import model.User;
 
 public interface ContainerDao {
     void persistContainer(Container container);
-    Container uploadContainer(int idDocker);
+    Container uploadContainer(String idDocker);
     List<Container> uploadAllContainer();
     List<Container> uploadAllContainerOfUser(Customer customer);
     public void modifyContainer(Container container);

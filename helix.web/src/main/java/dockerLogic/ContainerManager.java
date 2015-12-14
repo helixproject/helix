@@ -21,13 +21,14 @@ public class ContainerManager{
 	public int startContainer(Container container) {
 		String[] commands = {"docker","start",container.getIdDocker()};
 		String[] result=ShellManager.execOnShell(commands);
+		container.setStatus("up");
 		return 0;
 	}
 
 	public int stopContainer(Container container) {
 		String[] commands = {"docker","stop",container.getIdDocker()};
 		String[] result=ShellManager.execOnShell(commands);
-		container.setStatus("Down");
+		container.setStatus("down");
 		return 0;
 	}
 
@@ -47,7 +48,7 @@ public class ContainerManager{
 	public int unpauseContainer(Container container) {
 		String[] commands = {"docker","unpause",container.getIdDocker()};
 		String[] result=ShellManager.execOnShell(commands);
-		container.setStatus("Up");
+		container.setStatus("up");
 		return 0;
 	}
 }

@@ -34,7 +34,7 @@
 				<tr>
 					<th>Name</th>
 					<th>Image</th>
-					<th>Port</th>
+					<th>Port map</th>
 					<th>RAM</th>
 					<th>CPU</th>
 					<th>Status</th>
@@ -68,6 +68,12 @@ $(function(){
 		if (d.status === "up") {
 			$(".success.fa.fa-play").addClass("disabled");
 			$(".success.fa.fa-play").removeClass("active");
+			$(".success.fa.fa-pause").addClass("active");
+			$(".success.fa.fa-pause").removeClass("disabled");
+			$(".success.fa.fa-stop").addClass("active");
+			$(".success.fa.fa-stop").removeClass("disabled");
+			$(".success.fa.fa-play-circle").addClass("active");
+			$(".success.fa.fa-play-circle").removeClass("disabled");
 			$(".success.fa.fa-stop").click(function(){
 				window.location = '/helix.web/ManageContainer?action=stop&id='+d.idDocker;
 			});
@@ -77,15 +83,46 @@ $(function(){
 			$(".success.fa.fa-play-circle").click(function(){
 				window.location = '/helix.web/ManageContainer?action=unpause&id='+d.idDocker;
 			});
-		} else {
+		} else if (d.status === "down" ){
+			
+			$(".success.fa.fa-play").addClass("active");
+			$(".success.fa.fa-play").removeClass("disabled");
+			$(".success.fa.fa-pause").addClass("disabled");
+			$(".success.fa.fa-pause").removeClass("active");
+			$(".success.fa.fa-stop").addClass("disabled");
+			$(".success.fa.fa-stop").removeClass("active");
+			$(".success.fa.fa-play-circle").addClass("disabled");
+			$(".success.fa.fa-play-circle").removeClass("active");
+			$(".success.fa.fa-play").click(function(){
+				window.location = '/helix.web/ManageContainer?action=play&id='+d.idDocker;
+			});
+		}
+		else if (d.status === "created" ){
 			$(".success.fa.fa-pause").addClass("disabled");
 			$(".success.fa.fa-stop").addClass("disabled");
 			$(".success.fa.fa-play-circle").addClass("disabled");
 			$(".success.fa.fa-pause").removeClass("active");
 			$(".success.fa.fa-stop").removeClass("active");
 			$(".success.fa.fa-play-circle").removeClass("active");
+			$(".success.fa.fa-play").removeClass("disabled");
+			$(".success.fa.fa-play").addClass("active");
 			$(".success.fa.fa-play").click(function(){
-				window.location = '/helix.web/ManageContainerServlet?action=play&id='+d.idDocker;
+				window.location = '/helix.web/ManageContainer?action=play&id='+d.idDocker;
+			});
+		}
+		else if(d.status === "paused"){
+			$(".success.fa.fa-stop").addClass("disabled");
+			$(".success.fa.fa-play-circle").addClass("disabled");
+			$(".success.fa.fa-play").addClass("disabled");
+			$(".success.fa.fa-stop").removeClass("active");
+			$(".success.fa.fa-play-circle").removeClass("active");
+			$(".success.fa.fa-play").removeClass("active");
+			$(".success.fa.fa-pause").addClass("disabled");
+			$(".success.fa.fa-pause").removeClass("active");
+			$(".success.fa.fa-play-circle").addClass("active");
+			$(".success.fa.fa-play-circle").removeClass("disabled");
+			$(".success.fa.fa-play-circle").click(function(){
+				window.location = '/helix.web/ManageContainer?action=unpause&id='+d.idDocker;
 			});
 		}
 		return actions;
@@ -110,10 +147,10 @@ $(function(){
         	[
             { "data": "name"},
             { "data": "image"},
-            { "data": "portmappers"},
+            { "data": "name"},
             { "data": "ram"},
             { "data": "cpu"},
-            { "data": "cpu"},
+            { "data": "status"},
             { "data": actionButtons, className: "table-actions" },
         ],
     }).fadeIn();

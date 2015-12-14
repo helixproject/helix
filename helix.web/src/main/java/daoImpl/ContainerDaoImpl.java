@@ -24,16 +24,18 @@ public class ContainerDaoImpl implements ContainerDao {
 		em.getTransaction().commit();
 	}
 
-	public Container uploadContainer(int idDocker) {
+	public Container uploadContainer(String idDocker) {
+		System.out.println("        I am called.");
+		System.out.println("                                     ");
+		System.out.println("                                     ");
+		System.out.println("                                     ");
+		System.out.println("                                     ");
+		System.out.println("                                     ");
+		System.out.println(idDocker);
 		Query query = em.createQuery("Select container from Container container where container.idDocker =:idDocker");
 		query.setParameter("idDocker",idDocker);
 		Container container;
-		try{
-			container=(Container) query.getSingleResult();
-		}
-		catch(Exception e){
-			return null;
-		}
+		container=(Container) query.getSingleResult();
 		return container;
 	}
 	
@@ -53,7 +55,7 @@ public class ContainerDaoImpl implements ContainerDao {
 
 	public List<Container> uploadAllContainerOfUser(Customer customer) {
 		List<Container> containers;
-		Query query = em.createQuery("Select container from Container container where container.owner =:owner");
+		Query query = em.createQuery("Select container from Container container where container.owner = :owner");
 		query.setParameter("owner",customer);
 		containers=query.getResultList();
 		return containers;
