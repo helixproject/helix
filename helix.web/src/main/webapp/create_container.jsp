@@ -11,7 +11,7 @@
 		<div class="page-header">
 		<h1>Create container</h1>
 		</div>
-		<form data-toggle="validator" class="form-horizontal" action="CreateContainerServlet" method="post" novalidate>
+		<form data-toggle="validator" class="form-horizontal" action="${pageContext.request.contextPath}/CreateContainer" method="post" novalidate>
 		
 		<div class = "form-group">
 		<div class="col-xs-3">
@@ -41,7 +41,6 @@
 		</select>
 		</div>
 		</div>
-	
 		
 		<div class = "form-group">
 		<div class="col-xs-3">
@@ -52,9 +51,6 @@
 		<option value="mysql">Mysql</option>
 		</select>
 		</div>
-		</div>
-		
-		
 		</div>
 
 		<br/>

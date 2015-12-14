@@ -1,3 +1,20 @@
+#bg {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.active {
+	cursor:pointer;
+    cursor:hand;
+}
+
+.fa.disabled {
+	color: #777 ;
+}
+
 i.fa-play {
 	color: #449D44;
 }
@@ -7,8 +24,22 @@ i.fa-stop {
 i.fa-pause {
 	color: black;
 }
-td.table-actions {
-	text-align: right;
+td {
+	text-align: center;
+}
+
+.table {
+	border-color: #eeeeec ;
+	border-style: solid ;
+	border-width: 1px;
+}
+
+.table > tbody > tr > td {
+    line-height: 30px;
+}
+
+th {
+	text-align: center;
 }
 
 .navbar-default {
@@ -37,13 +68,32 @@ td.table-actions {
 	font-weight: 700;
 }
 
+.li {
+	font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+}
+
 body {
 	font-family: 'Oxygen', sans-serif;
     padding-top: 70px;
+    overflow-x: hidden;
 }
 
-.p {
+h1,h2,h3 {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 600;
+}
+
+p {
+	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: 300;
+	font-size: 17px ;
+}
+
+li {
+		font-family: 'Source Sans Pro', sans-serif;
+		font-weight: 300;
+		font-size: 16px;
 }
 
 .spacer {

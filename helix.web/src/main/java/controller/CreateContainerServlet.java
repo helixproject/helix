@@ -14,7 +14,8 @@ import model.User;
 import daoImpl.ContainerDaoImpl;
 import daoImpl.DatabaseConnection;
 import dockerLogic.ContainerManager;
-@WebServlet("/CreateContainerServlet")
+
+@WebServlet("/CreateContainer")
 public class CreateContainerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -40,7 +41,6 @@ public class CreateContainerServlet extends HttpServlet {
 		container.setOwner((Customer)user);
 		new ContainerManager().createContainer(container);
 		new ContainerDaoImpl(new DatabaseConnection()).persistContainer(container);
-    	request.setAttribute("container", container.getIdDocker());
-    	request.getRequestDispatcher("Success.jsp").forward(request, response);
+    	response.sendRedirect("userhome.jsp");
 	}
 }

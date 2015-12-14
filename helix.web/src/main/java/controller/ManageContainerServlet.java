@@ -7,33 +7,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Customer;
-
-@WebServlet("/init")
-public class init extends HttpServlet {
+@WebServlet("/ManageContainer")
+public class ManageContainerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public init() {
+
+    public ManageContainerServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession(true).setAttribute("user",new Customer("customer","7c2ab87a34395892f10413db233c6420","gold"));
+
+		String action = request.getParameter("action");
+		String idContainer = request.getParameter("id");
+		if(action.equals("play")){
+			
+		}
+		else if(action.equals("stop")){
+			
+		}
+		else if(action.equals("pause")){
+			
+		}
+		else{
+			
+		}
+		request.getRequestDispatcher("userhome.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

@@ -11,8 +11,6 @@ import org.apache.commons.fileupload.*;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-@SuppressWarnings("serial")
-@WebServlet("/UploadServlet")
 public class UploadServlet extends HttpServlet {
    
    private boolean isMultipart;

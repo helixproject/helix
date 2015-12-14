@@ -11,16 +11,11 @@ public class ContainerManager{
 			id=id.substring(0,id.length()-1);
 			container.setIdDocker(id);
 			container.setStatus("created");
-			
-			
-			
-			
 		}
 		else if(container.getImage().equals("mysql")){
 			container.setIdDocker(new MysqlManager().createMysql());
 			container.setStatus("created");
 		}
-
 	}
 	
 	public int startContainer(Container container) {

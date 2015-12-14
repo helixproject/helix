@@ -11,7 +11,7 @@
 		<div class="page-header">
 		<h1>Sign up</h1>
 		</div>
-		<form data-toggle="validator" class="form-horizontal" action="SignupServlet" method="post" novalidate>
+		<form data-toggle="validator" class="form-horizontal" action="${pageContext.request.contextPath}/Signup" method="post" novalidate>
 		
 		<div class = "form-group">
 		<div class="col-xs-3">
@@ -24,7 +24,7 @@
 		<div class = "form-group">
 		<div class="col-xs-3">
 		<label for="container_name">Password:</label>
-		<input type="text" class="form-control" name="password" required />
+		<input type="password" class="form-control" name="password" required />
 		<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 		</div>
 		</div>
@@ -32,7 +32,7 @@
 		<div class = "form-group">
 		<div class="col-xs-3">
 		<label for="container_name">Confirm password:</label>
-		<input type="text" class="form-control" name="cpassword" required />
+		<input type="password" class="form-control" name="cpassword" required />
 		<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 		</div>
 		</div>

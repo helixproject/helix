@@ -1,11 +1,9 @@
-
 package daoImpl;
+
 import interfaces.PortMapperDao;
 import interfaces.UserDao;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-
 import model.PortMapper;
 import model.User;
 
@@ -18,7 +16,7 @@ public class PortMapperDaoImpl implements PortMapperDao{
 
 	public int getMaxPort() {
 		Query query = em.createQuery("Select max(p.externalPort) from PortMapper p");
-		int max=(int)query.getSingleResult();
+		int max=(Integer) query.getSingleResult();
 		if(max==0)
 			return initPort;
 		return max;
