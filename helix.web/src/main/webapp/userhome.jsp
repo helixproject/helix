@@ -145,6 +145,7 @@ function detail(d) {
             { data: "status"},
             { data: actionButtons, className: "table-actions" },
         ],
+        "order": [[ 1, "desc" ]],
     }).fadeIn();
 });
 </script>
