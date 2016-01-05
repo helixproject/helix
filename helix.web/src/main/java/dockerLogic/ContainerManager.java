@@ -51,4 +51,25 @@ public class ContainerManager{
 		container.setStatus("up");
 		return 0;
 	}
+	
+	public int doCheckpoint(Container container) {
+		String[] commands = {"/bin/sh","checkpoint",container.getIdDocker()};
+		String[] result=ShellManager.execOnShell(commands);
+		container.setStatus("up");
+		return 0;
+	}
+	
+	public int restoreCheckpoint(Container container) {
+		String[] commands = {"docker","checkpoint",container.getIdDocker()};
+		String[] result=ShellManager.execOnShell(commands);
+		container.setStatus("up");
+		return 0;
+	}
+	
+	public int exportCheckpoint(Container container) {
+		String[] commands = {"docker","checkpoint",container.getIdDocker()};
+		String[] result=ShellManager.execOnShell(commands);
+		container.setStatus("up");
+		return 0;
+	}
 }

@@ -12,11 +12,11 @@ import daoImpl.DatabaseConnection;
 import dockerLogic.ContainerManager;
 import model.Container;
 
-@WebServlet("/ManageContainer")
-public class ManageContainerServlet extends HttpServlet {
+@WebServlet("/Checkpoint")
+public class CheckpointServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public ManageContainerServlet() {
+    public CheckpointServlet() {
         super();
     }
 
