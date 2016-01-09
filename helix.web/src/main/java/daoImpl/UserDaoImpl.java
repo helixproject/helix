@@ -34,6 +34,21 @@ public class UserDaoImpl implements UserDao{
 		}
 		return user;
 	}
+	
+	public User uploadUser(String login) {
+		Query query = em.createQuery("Select user from User user where user.login =:login");
+		query.setParameter("login",login);
+		User user;
+		try{
+			user=(User) query.getSingleResult();
+		}
+		catch(Exception e){
+			return null;
+		}
+		return user;
+	}
+	
+	
 	public boolean isUser(String login) {
 		//i have to hash it after..
 		Query query = em.createQuery("Select user from User user where user.login =:login");

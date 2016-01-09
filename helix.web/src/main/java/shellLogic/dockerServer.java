@@ -11,6 +11,9 @@ import com.jcraft.jsch.Session;
 public class dockerServer {
 	private String dockerServerName;
 	private Session session;
+	private String host;
+	private String passwd;
+	
 	public dockerServer(String host,String user,String passwd,String dockerServerName){
 		try{
 			JSch jSch = new JSch();
@@ -21,6 +24,8 @@ public class dockerServer {
 			session.setPassword(passwd);
 			session.connect();
 			this.dockerServerName=dockerServerName;
+			this.host=host;
+			this.passwd=passwd;
 		}
 		catch(Exception e){
 			e.printStackTrace();

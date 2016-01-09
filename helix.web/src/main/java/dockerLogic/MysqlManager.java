@@ -3,16 +3,19 @@ package dockerLogic;
 import java.util.ArrayList;
 
 import shellLogic.ShellManager;
+import shellLogic.SshManager;
 import model.Container;
 import model.PortMapper;
 
 public class MysqlManager{
-
+	private static String pathOfDockerFiles="/root/helix/";
 	
-	public static String createMysql(Container container) {		
+	public static String createMysql(Container container) {	
+		
+		
+		
 		ArrayList<PortMapper> portmappers=new ArrayList<PortMapper>();
 		portmappers.add(new PortMapper(3306));
-		portmappers.add(new PortMapper(22));
 		PortMapper.assignExternalPorts(portmappers);
 		container.setPortmappers(portmappers);
 		
@@ -20,10 +23,10 @@ public class MysqlManager{
 		for(PortMapper portmapper:portmappers){
 			mapping+=" -p "+portmapper.getExternalPort()+":"+portmapper.getLocalPort();
 		}	
-		mapping+=" rshipp/insecure-mysql-ssh";
-		String[] commands = mapping.split(" ");
-		String[] result=ShellManager.execOnShell(commands);
-		return result[0];
+		mapping+=" mysql";
+		String dockerServerConf=pathOfDockerFiles+container.getOwner().getAccount()+".conf";
+		String result=SshManager.execOnDocker(dockerServerConf,mapping);
+		return result;
 	}
 
 }

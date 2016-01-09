@@ -14,7 +14,7 @@ import java.util.StringTokenizer;
 public class SshManager{
 	private static Map<String,dockerServer> connectedServers;
 	
-	public String execOnDocker(String dockerServerName,String command){
+	public static String execOnDocker(String dockerServerName,String command){
 		if(connectedServers.get(dockerServerName)==null){
 			String host=null,passwd=null,user=null;
 			try{
