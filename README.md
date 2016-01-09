@@ -1,1 +1,1 @@
-# helixproject
+# ![Helix](img/Helix.png)
