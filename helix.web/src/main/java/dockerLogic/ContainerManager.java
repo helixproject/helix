@@ -8,13 +8,14 @@ public class ContainerManager{
 	public String createContainer(Container container) {
 		String id = null ;
 		if(container.getImage().equals("tomcat")){
-			id=new TomcatManager().createTomcat(container);
+			id=TomcatManager.createTomcat(container);
 			id=id.substring(0,id.length()-1);
 			container.setIdDocker(id);
 			container.setStatus("created");
 		}
 		else if(container.getImage().equals("mysql")){
-			id=new MysqlManager().createMysql();
+			id=MysqlManager.createMysql(container);
+			id=id.substring(0,id.length()-1);
 			container.setIdDocker(id);
 			container.setStatus("created");
 		}
@@ -54,11 +55,11 @@ public class ContainerManager{
 		container.setStatus("up");
 		return 0;
 	}
-	
+	//g modifie ça yuanbo tu avais mi /bin/bash alors que tu doi mettre docker et les status aussi
 	public int doCheckpoint(Container container) {
-		String[] commands = {"/bin/sh","checkpoint",container.getIdDocker()};
+		String[] commands = {"docker","checkpoint",container.getIdDocker()};
 		String[] result=ShellManager.execOnShell(commands);
-		container.setStatus("up");
+		container.setStatus("checkpointed");
 		return 0;
 	}
 	
@@ -69,6 +70,7 @@ public class ContainerManager{
 		return 0;
 	}
 	
+	//ça sert a quoi ça ?
 	public int exportCheckpoint(Container container) {
 		String[] commands = {"docker","checkpoint",container.getIdDocker()};
 		String[] result=ShellManager.execOnShell(commands);

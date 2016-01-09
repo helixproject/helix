@@ -9,7 +9,7 @@ import shellLogic.ShellManager;
 public class TomcatManager{
 
 	//with port redirection
-	public String createTomcat(Container container) {
+	public static String createTomcat(Container container) {
 		ArrayList<PortMapper> portmappers=new ArrayList<PortMapper>();
 		portmappers.add(new PortMapper(8080));
 		portmappers.add(new PortMapper(22));
