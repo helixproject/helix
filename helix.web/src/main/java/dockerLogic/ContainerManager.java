@@ -5,17 +5,20 @@ import shellLogic.*;
 
 public class ContainerManager{
 
-	public void createContainer(Container container) {
+	public String createContainer(Container container) {
+		String id = null ;
 		if(container.getImage().equals("tomcat")){
-			String id=new TomcatManager().createTomcat(container);
+			id=new TomcatManager().createTomcat(container);
 			id=id.substring(0,id.length()-1);
 			container.setIdDocker(id);
 			container.setStatus("created");
 		}
 		else if(container.getImage().equals("mysql")){
-			container.setIdDocker(new MysqlManager().createMysql());
+			id=new MysqlManager().createMysql();
+			container.setIdDocker(id);
 			container.setStatus("created");
 		}
+		return id;
 	}
 	
 	public int startContainer(Container container) {

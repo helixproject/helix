@@ -10,6 +10,10 @@
 <%@ include file="navbar.jsp" %>
 <% Customer c = (Customer)request.getSession().getAttribute("user");
 	String name = c.getLogin();
+	String id = request.getParameter("id");
+    if (id != null) {
+    	   session.setAttribute( "idContainer", id);
+    }
 %>
 
 <title>View Container - Helix</title>
@@ -31,14 +35,15 @@
 		
 		<div class="row">
 		<div class="col-md-12">
-		<table class="table table-hover" id="containers">
+		<table class="table table-hover" id="stats">
 			<thead>
 				<tr>
+					<th>Time</th>
+					<th>Container ID</th>
 					<th>CPU%</th>
-					<th>Memory usage / Limit</th>
+					<th>Memory Usage</th>
+					<th>Memory Limit</th>
 					<th>Memory%</th>
-					<th>Network I/O</th>
-					<th>Block I/O</th>
 				</tr>
 			</thead>
 		</table>
@@ -58,9 +63,9 @@ $(function(){
         "sLoadingRecords": '<i class="fa fa-spinner fa-spin"></i> Loading...',
     });
     
-    $("#containers").dataTable({
+    $("#stats").dataTable({
         "ajax": {
-            "url": "/helix.web/GetContainerList",
+            "url": "/helix.web/GetContainerStats",
             "dataType": "json",
             "cache": false,
             "contentType": "application/json; charset=utf-8"
@@ -68,28 +73,24 @@ $(function(){
         "bInfo": false,
         "paging": false,
         "bSort" : false,
+        "bFilter" : false,
         "stripeClasses":[],
-        
-        "columnDefs": [ {
-            "targets": 0,
-            "render": function ( data, type, full, meta ) {
-              return '<a href="'+"viewContainer.jsp?"+data+'"><i class="fa fa-plus-square"></i></a>';
-            }
-          } ],
-        
         "columns":
         	[
-			{ data: "idDocker"},
-            { data: "name"},
-            { data: "image"},
-            { data: "portmappers[:].externalPort"},
-            { data: "ram"},
-            { data: "cpu"},
-            { data: "status"},
-            { data: actionButtons, className: "table-actions" },
+ 			{ data: "time"},
+			{ data: "id"},
+            { data: "cpu_per"},
+            { data: "mem_usage"},
+            { data: "mem_limit"},
+            { data: "mem_per"},
         ],
     }).fadeIn();
 });
+
+setInterval( function () {
+    table.ajax.reload( null, false ); // user paging is not reset on reload
+}, 1000 );
+
 </script>
 	<%@ include file="footer.jsp" %>
 </html>

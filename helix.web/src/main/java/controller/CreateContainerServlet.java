@@ -24,10 +24,6 @@ public class CreateContainerServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		new ContainerManager().createContainer(new Container());
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name=request.getParameter("name");
 		int cpu=Integer.parseInt(request.getParameter("cpu"));
 		int ram=Integer.parseInt(request.getParameter("ram"));
@@ -42,5 +38,9 @@ public class CreateContainerServlet extends HttpServlet {
 		new ContainerManager().createContainer(container);
 		new ContainerDaoImpl(new DatabaseConnection()).persistContainer(container);
     	response.sendRedirect("userhome.jsp");
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
 	}
 }

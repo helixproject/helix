@@ -39,6 +39,7 @@ public class SignupServlet extends HttpServlet {
 				String hashedPassword=Authentificator.hashPassword(password) ;
 				customer.setHashedPassword(hashedPassword);
 				new UserDaoImpl(new DatabaseConnection()).persistUser(customer);
+				DataVolumeManager.createUserDataVolume(login);
 				request.getRequestDispatcher("login.jsp").forward(request,response);
 			}
 			else{

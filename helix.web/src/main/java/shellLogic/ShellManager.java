@@ -12,6 +12,7 @@ public class ShellManager {
 		String[] result=new String[2];
 		try {
 			proc = rt.exec(command);
+			proc.waitFor();
 			BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
 			BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
 			String temp="";
@@ -25,6 +26,9 @@ public class ShellManager {
 			}
 		} 
 		catch (IOException e) {	
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;

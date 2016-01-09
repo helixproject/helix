@@ -1,13 +1,9 @@
 <!doctype html>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
-<%@page import="model.Customer"%>
-<%@page import="model.Container"%>
-<%@page import="daoImpl.DatabaseConnection"%>
-<%@page import="daoImpl.ContainerDaoImpl"%>
+
 <html lang="en">
 <head>
 <%@ include file="navbar.jsp" %>
+
 <% Customer c = (Customer)request.getSession().getAttribute("user");
 	String name = c.getLogin();
 %>
@@ -132,8 +128,7 @@ function detail(d) {
               return '<a href="'+"ManageContainer?action=detail&id="+data+'"><i class="fa fa-plus-square"></i></a>';
             }
           } ],
-        
-        
+
         "columns":
         	[
 			{ data: "idDocker"},

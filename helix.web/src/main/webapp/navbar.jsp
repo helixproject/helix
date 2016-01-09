@@ -16,7 +16,16 @@
 
 <%-- JSTL --%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-					
+
+
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="model.Customer"%>
+<%@page import="model.Container"%>
+<%@page import="daoImpl.DatabaseConnection"%>
+<%@page import="daoImpl.ContainerDaoImpl"%>
+
+	
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">

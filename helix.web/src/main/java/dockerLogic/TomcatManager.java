@@ -1,4 +1,5 @@
 package dockerLogic;
+
 import java.util.ArrayList;
 
 import model.Container;
@@ -14,11 +15,11 @@ public class TomcatManager{
 		portmappers.add(new PortMapper(22));
 		PortMapper.assignExternalPorts(portmappers);
 		container.setPortmappers(portmappers);
-		
 		String mapping="docker create";
 		for(PortMapper portmapper:portmappers){
 			mapping+=" -p "+portmapper.getExternalPort()+":"+portmapper.getLocalPort();
-		}	
+		}
+		mapping+=" -v /helix/container-data-volume/"+container.getOwner().getLogin()+":/usr/local/tomcat/webapps/";
 		mapping+=" rshipp/insecure-tomcat-ssh";
 		String[] commands = mapping.split(" ");
 		String[] result=ShellManager.execOnShell(commands);
