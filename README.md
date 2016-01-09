@@ -1,4 +1,1 @@
-# Helix
-
-![Helix Logo](img/Helix.png)
-
+# ![Helix](img/Helix.png)
