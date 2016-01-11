@@ -35,7 +35,7 @@ public class CreateContainerServlet extends HttpServlet {
 		container.setName(name);
 		container.setImage(image);
 		container.setOwner((Customer)user);
-		new ContainerManager().createContainer(container);
+		new ContainerManager().createContainer(user.getLogin(),container);
 		new ContainerDaoImpl(new DatabaseConnection()).persistContainer(container);
     	response.sendRedirect("userhome.jsp");
 	}

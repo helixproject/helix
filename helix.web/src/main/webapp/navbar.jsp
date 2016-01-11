@@ -13,10 +13,10 @@
 <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/validator.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
 
 <%-- JSTL --%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -25,6 +25,14 @@
 <%@page import="daoImpl.DatabaseConnection"%>
 <%@page import="daoImpl.ContainerDaoImpl"%>
 
+<%	
+	Customer c = null ;
+	String account = null ;
+	if(request.getSession().getAttribute("user") != null){
+		c = (Customer)request.getSession().getAttribute("user");
+		account = c.getAccount();
+	}
+%>
 	
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
@@ -34,7 +42,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.jsp">Helix</a>
+            <%if (account == null){%>
+                <a class="navbar-brand" href="index.jsp">Helix</a>
+            <%}
+           else if(account.equals("free")){%>
+           <a class="navbar-brand" href="index.jsp">Helix</a>
+           <%
+            }
+           else {%>
+            <a class="navbar-brand" href="index.jsp">Helix Premium</a>
+            <% } %>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">

@@ -1,12 +1,10 @@
 <!doctype html>
 <html lang="en">
-<!--  <img src="images/bg.JPG" id="bg" alt=""> -->
 <head>
 	<%@ include file="navbar.jsp" %>
     <title>Helix - Cloud service provider</title>
 </head>
 <body>
-
 
 <div class="container">
 <header class="jumbotron spacer">
@@ -15,20 +13,15 @@
 <p>Helix offers high availability docker-based cloud services. Thanks to Helix, deploying webapp is never so easy. </p>
 <p><a class="btn btn-primary btn-large">About Helix</a>
 </p>
+               <p>Helix comes in two flavors: Free and Premium. Start using Helix for free, then upgrade to Premium whenever you are ready.
+Exclusive features for Premium user: <b>monitoring, migration, auto-scaling, and many more.</b> </p>
 </header>
-<hr>
 
 <div class="row">
             <div class="col-lg-12">
-               <h3 align="center">Services</h3>
-               
-               <div class="jumbotron spacer">
-               <p>Helix comes in two flavors: Free and Premium. Start using Helix for free, then upgrade to Premium whenever you are ready.
-Exclusive features for Premium user: <b>monitoring, migration, auto-scaling, and many more.</b> </p>
-               </div>
                 <br>
             </div>
-
+        </div>
         <div class="row text-center">
             <div class="col-md-5 col-sm-6 service">
                 <div class="thumbnail">
@@ -72,10 +65,9 @@ Exclusive features for Premium user: <b>monitoring, migration, auto-scaling, and
                     </div>
                 </div>
             </div>
-        <hr>
         </div>
         	<%@ include file="footer.jsp" %>
-        </div>
+
         </div>
 
 </body>

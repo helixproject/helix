@@ -17,28 +17,33 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.jcraft.jsch.Session;
 
 import daoImpl.ContainerDaoImpl;
 import daoImpl.DatabaseConnection;
 import model.Container;
 import model.Customer;
 import model.Stats;
+import model.User;
 import shellLogic.ShellManager;
+import shellLogic.SshManager;
 
 @WebServlet("/GetContainerStats")
 public class GetContainerStatsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private static String pathOfDockerFiles="/helix/servers/";
     public GetContainerStatsServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String idContainer = (String)request.getSession(true).getAttribute("idContainer");
-		String[] commands = {"/bin/sh","-c","docker stats --no-stream=true "+idContainer+" | sed -n 2p"};
-		String[] result = ShellManager.execOnShell(commands);
-		String out = result[0] ;
+
+		String idContainer = (String)request.getParameter("idContainer");
+		String command = "docker stats --no-stream=true "+idContainer+" | sed -n 2p";
+		Customer customer = (Customer)request.getSession(true).getAttribute("user");
+		String dockerServerConf=pathOfDockerFiles+customer.getAccount()+".conf";
+				
+		String out = SshManager.execOnDocker(dockerServerConf,command);
 		String[] stats = out.split("\\s+");
 		stats[0] = stats[0].substring(0, Math.min(stats[0].length(), 12));
 		
@@ -52,6 +57,7 @@ public class GetContainerStatsServlet extends HttpServlet {
 		PrintWriter o = response.getWriter();
 		o.print(output);
 		o.flush();
+		response.addHeader("Refresh", "1");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

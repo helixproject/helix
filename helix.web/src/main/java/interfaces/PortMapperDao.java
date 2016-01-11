@@ -1,6 +1,6 @@
 package interfaces;
+
 import model.PortMapper;
-import model.User;
 
 public interface PortMapperDao {
     public int getMaxPort();

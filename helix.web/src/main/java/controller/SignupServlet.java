@@ -14,7 +14,6 @@ import daoImpl.UserDaoImpl;
 @WebServlet("/Signup")
 public class SignupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
 	
     public SignupServlet() {
         super();
@@ -39,7 +38,7 @@ public class SignupServlet extends HttpServlet {
 				String hashedPassword=Authentificator.hashPassword(password) ;
 				customer.setHashedPassword(hashedPassword);
 				new UserDaoImpl(new DatabaseConnection()).persistUser(customer);
-				DataVolumeManager.createUserDataVolume(login);
+				DataVolumeManager.createUserDataVolume(customer);
 				request.getRequestDispatcher("login.jsp").forward(request,response);
 			}
 			else{

@@ -116,10 +116,5 @@ public class Container {
 
 	public void setPortmappers(List<PortMapper> portmappers) {
 		this.portmappers = portmappers;
-	}
-
-	
-	
-	
-		
+	}	
 }

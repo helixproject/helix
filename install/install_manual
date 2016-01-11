@@ -1,0 +1,66 @@
+
+
+============================
+Helix Install Manual
+============================
+
+To install Helix platform, you will need three hosts : two hosts as Docker servers, and one host for the main application.
+Every host should satisfy following requirements (at least for two Docker servers):
+
+-> Linux kernel v3.11 or higher (Ubuntu 15.04 Vivid Vervet or higher is recommended)
+-> 4GB of RAM
+
+============================
+Prepare two Docker servers
+============================
+
+On both servers, install: 
+
+-> Docker experimental version (1.10.0-dev)
+-> CRIU 1.8
+
+Make sure that SSH key are exchanged bewteen two servers.
+
+Create filesystem for helix:
+
+/helix
+└── data-volume
+
+============================
+Install Helix
+============================
+
+First, you have to create filesystem for helix.
+Copy the folder "helix" to your Linux root. Your filesystel should like: 
+
+/helix
+├── demo-webapps
+│   └── DemoWebapp.war
+├── scripts
+│   ├── checkStats.sh
+│   ├── CreateContainerDataVolume.sh
+│   ├── CreateContainer.sh
+│   ├── CreateUserDataVolume.sh
+│   ├── uploadWebApp.sh
+├── servers
+│   ├── free.conf
+│   ├── host.conf
+│   ├── host.conf~
+│   ├── premium.conf
+└── tmp
+
+On the server which Helix will be running, make sure that you have:
+
+-> JRE 1.7 (or higher)
+-> Tomcat 7 (or higher)
+-> MySQL 5.5 (or higher)
+
+Enter your MySQL, and create a database for helix: 
+	create database helix
+Finally, copy "helix.web.war" into your tomcat /webapps folder.
+
+
+=========
+Helix Team
+Github: https://github.com/helixproject/helix
+=========

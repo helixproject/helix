@@ -5,7 +5,6 @@ import java.security.MessageDigest;
 public class Authentificator {
 	
 	public static String hashPassword(String password){
-		//this method just has a password in order to do authentification
 		String hashedString="";
 		try {
 			MessageDigest md;

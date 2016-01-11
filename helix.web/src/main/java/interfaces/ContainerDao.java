@@ -1,10 +1,8 @@
 package interfaces;
 
 import java.util.List;
-
 import model.Container;
 import model.Customer;
-import model.User;
 
 public interface ContainerDao {
     void persistContainer(Container container);

@@ -21,16 +21,16 @@ public class ManageContainerServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		String action = request.getParameter("action");
 		String idContainer = request.getParameter("id");
 		DatabaseConnection dbc = new DatabaseConnection();
 		ContainerDaoImpl dao = new ContainerDaoImpl(dbc);
+		String nameContainer = dao.getContainerName(idContainer);
 		Container container = dao.uploadContainer(idContainer);
 		ContainerManager m = new ContainerManager();
 		
 		if(action.equals("detail")){
-			request.getRequestDispatcher("viewContainer.jsp?"+idContainer).forward(request, response);
+			request.getRequestDispatcher("viewContainer.jsp?"+"id="+idContainer+"&name="+nameContainer).forward(request, response);
 		}
 		else {
 			if(action.equals("play")){

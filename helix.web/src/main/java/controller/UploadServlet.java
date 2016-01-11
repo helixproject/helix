@@ -10,21 +10,25 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.*;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import model.Customer;
+import shellLogic.ServerUtils;
+import shellLogic.ShellManager;
 
+@WebServlet("/Upload")
 public class UploadServlet extends HttpServlet {
-   
+	
    private boolean isMultipart;
    private String filePath;
-   private int maxFileSize = 1 * 1024 * 1024;
-   private int maxMemSize = 4 * 1024;
+   private int maxFileSize = 10 * 1024 * 1024;
    private File file ;
-
-   public void init( ){
-      filePath = getServletContext().getInitParameter("file-upload"); 
-   }
    
    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, java.io.IOException {
-      // Check that we have a file upload request
+	  Customer customer = (Customer)request.getSession(true).getAttribute("user");
+	  String nameContainer = (String)request.getParameter("name");
+	  filePath = "/helix/tmp/";
+	  
+	  String serverIp = ServerUtils.getServerInfoByAccout(customer.getAccount()).get(0);
+	  
       isMultipart = ServletFileUpload.isMultipartContent(request);
       response.setContentType("text/html");
       java.io.PrintWriter out = response.getWriter( );
@@ -41,21 +45,11 @@ public class UploadServlet extends HttpServlet {
       }
       
       DiskFileItemFactory factory = new DiskFileItemFactory();
-      // maximum size that will be stored in memory
-      factory.setSizeThreshold(maxMemSize);
-      // Location to save data that is larger than maxMemSize.
-      factory.setRepository(new File("/home/yuanbo/Desktop"));
-
-      // Create a new file upload handler
       ServletFileUpload upload = new ServletFileUpload(factory);
-      // maximum file size to be uploaded.
       upload.setSizeMax(maxFileSize);
 
       try{ 
-	      // Parse the request to get file items.
 	      List fileItems = upload.parseRequest(request);
-		
-	      // Process the uploaded file items
 	      Iterator i = fileItems.iterator();
 	
 	      out.println("<html>");
@@ -63,32 +57,29 @@ public class UploadServlet extends HttpServlet {
 	      out.println("<title>Servlet upload</title>");  
 	      out.println("</head>");
 	      out.println("<body>");
-	      
+	      String fileName = null ;
 	      while (i.hasNext()) 
 	      {
 	         FileItem fi = (FileItem)i.next();
 	         if (!fi.isFormField())	
 	         {
-	            // Get the uploaded file parameters
-	            String fieldName = fi.getFieldName();
-	            String fileName = fi.getName();
-	            String contentType = fi.getContentType();
-	            boolean isInMemory = fi.isInMemory();
-	            long sizeInBytes = fi.getSize();
-	            // Write the file
-	            if(fileName.lastIndexOf("\\") >= 0){
-	               file = new File( filePath + 
-	               fileName.substring( fileName.lastIndexOf("\\"))) ;
-	            }else{
-	               file = new File( filePath + 
-	               fileName.substring(fileName.lastIndexOf("\\")+1)) ;
-	            }
-	            fi.write( file ) ;
-	            out.println("Uploaded Filename: " + fileName + "<br>");
+	            fileName = fi.getName();
+	            file = new File(filePath+fileName);
+	            fi.write(file) ;
 	         }
 	      }
+	      
+	      String[] mapping = {"/bin/bash","/helix/scripts/uploadWebApp.sh",fileName,serverIp,
+	    		  "/helix/data-volume/"+customer.getLogin()+
+	          		"/"+ nameContainer + "/"+fileName};
+	      ShellManager.execOnShell(mapping);
+  		
+          out.println("<h2>The webapp "+fileName+" has been successfully uploaded.</h2>"+"</br>"
+          		+ " you will be redirected to user home.");
+          out.println("</br>");
 	      out.println("</body>");
 	      out.println("</html>");
+	      response.setHeader("Refresh","3; URL=./userhome.jsp");
    }catch(Exception ex) {
        System.out.println(ex);
    }

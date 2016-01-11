@@ -1,16 +1,12 @@
 package daoImpl;
 
 import interfaces.ContainerDao;
-
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-
-import model.Admin;
 import model.Container;
 import model.Customer;
-import model.User;
+
 
 public class ContainerDaoImpl implements ContainerDao {
 	private EntityManager em;
@@ -25,18 +21,18 @@ public class ContainerDaoImpl implements ContainerDao {
 	}
 
 	public Container uploadContainer(String idDocker) {
-		System.out.println("        I am called.");
-		System.out.println("                                     ");
-		System.out.println("                                     ");
-		System.out.println("                                     ");
-		System.out.println("                                     ");
-		System.out.println("                                     ");
-		System.out.println(idDocker);
 		Query query = em.createQuery("Select container from Container container where container.idDocker =:idDocker");
 		query.setParameter("idDocker",idDocker);
 		Container container;
 		container=(Container) query.getSingleResult();
 		return container;
+	}
+	
+	public String getContainerName(String idDocker) {
+		Query query = em.createQuery("Select container.name from Container container where container.idDocker =:idDocker");
+		query.setParameter("idDocker",idDocker);
+		String name = (String) query.getSingleResult();
+		return name;
 	}
 	
 	public List<Container> uploadAllContainer() {

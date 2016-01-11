@@ -1,24 +1,19 @@
-/* 
- * SSHManager
- * 
- * @author cabbott
- * @version 1.0
- */
 package shellLogic;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
+import shellLogic.DockerServer;
 
 public class SshManager{
-	private static Map<String,dockerServer> connectedServers;
+	private static Map<String,DockerServer> connectedServers = new HashMap<String,DockerServer>();
 	
 	public static String execOnDocker(String dockerServerName,String command){
 		if(connectedServers.get(dockerServerName)==null){
 			String host=null,passwd=null,user=null;
 			try{
-				//TO BE CHECKED
 				BufferedReader bfr=new BufferedReader(new FileReader(dockerServerName));
 
 				String line=bfr.readLine();
@@ -35,14 +30,16 @@ public class SshManager{
 				st=new StringTokenizer(line,"=");
 				st.nextToken();
 				passwd=st.nextToken();
+				
+				System.out.println("host ="+host+"  user:"+user+"  pass:"+passwd);
 			}
 			catch(Exception e){
 				e.printStackTrace();
 			}
-			dockerServer dockerserver=new dockerServer(host, user, passwd,dockerServerName);
+			DockerServer dockerserver=new DockerServer(host, user, passwd, dockerServerName);
 			connectedServers.put(dockerServerName,dockerserver);
 		}
-		dockerServer dockerserver=connectedServers.get(dockerServerName);
+		DockerServer dockerserver=connectedServers.get(dockerServerName);
 		return dockerserver.sendCommand(command);
 	}
 	

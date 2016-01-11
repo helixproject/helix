@@ -5,8 +5,9 @@
 <title>File Uploading Form</title>
 </head>
 
-<% Customer c = (Customer)request.getSession().getAttribute("user");
+<% 
 	String name = c.getLogin();
+	String nameContainer = request.getParameter("name");
 %>
 
 <body>
@@ -21,7 +22,7 @@
 			Select a webapp (.war file) to upload: 
 			<br/>
 			<br/>
-			<form action="UploadServlet" method="post" enctype="multipart/form-data">
+			<form action="Upload?name=<%=nameContainer %>" method="post" enctype="multipart/form-data">
 			<input type="file" name="file" size="50" />
 			<br/>
 			<input type="submit" class="btn btn-primary" value="Upload WebApp" />

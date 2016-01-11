@@ -1,11 +1,9 @@
 package daoImpl;
 
 import interfaces.PortMapperDao;
-import interfaces.UserDao;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import model.PortMapper;
-import model.User;
 
 public class PortMapperDaoImpl implements PortMapperDao{
 	private static final int initPort=9999;

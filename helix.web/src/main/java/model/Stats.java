@@ -55,6 +55,4 @@ public class Stats {
 		this.mem_limit = mem_limit;
 		this.mem_per = mem_per;
 	}
-	
-
 }

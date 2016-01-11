@@ -1,20 +1,25 @@
 package controller;
 
-import shellLogic.ShellManager;
+import model.Container;
+import model.Customer;
+import shellLogic.SshManager;
 
 public class DataVolumeManager {
 	
-	public static void createUserDataVolume(String login){
+	private static String pathOfDockerFiles="/helix/servers/";
+	
+	public static void createUserDataVolume(Customer customer){
 		String mapping="mkdir";
-		mapping+=" /helix/container-data-volume/"+login;
-		String[] commands = mapping.split(" ");
-		ShellManager.execOnShell(commands);
+		mapping+=" /helix/data-volume/"+customer.getLogin();
+		
+		String dockerServerConf=pathOfDockerFiles+customer.getAccount()+".conf";
+		SshManager.execOnDocker(dockerServerConf,mapping);
 	}
 	
-	public static void createContainerDataVolume(String login){
+	public static void createContainerDataVolume(Container container){
 		String mapping="mkdir";
-		mapping+=" /helix/container-data-volume/"+login;
-		String[] commands = mapping.split(" ");
-		ShellManager.execOnShell(commands);
+		mapping+=" /helix/data-volume/"+container.getOwner().getLogin()+"/"+container.getName();
+		String dockerServerConf=pathOfDockerFiles+container.getOwner().getAccount()+".conf";
+		SshManager.execOnDocker(dockerServerConf,mapping);
 	}
 }

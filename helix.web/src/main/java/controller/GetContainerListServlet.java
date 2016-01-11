@@ -28,7 +28,7 @@ public class GetContainerListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Customer customer = (Customer)request.getSession(true).getAttribute("user");
+		Customer customer = (Customer)request.getSession(true).getAttribute("user");		
 		DatabaseConnection dbc = new DatabaseConnection();
 		ContainerDaoImpl dao = new ContainerDaoImpl(dbc);
 		List<Container> l = new ArrayList<Container>();

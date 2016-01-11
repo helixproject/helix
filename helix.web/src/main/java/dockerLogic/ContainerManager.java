@@ -4,26 +4,24 @@ import model.Container;
 import shellLogic.*;
 
 public class ContainerManager{
-	private String pathOfDockerFiles="/root/helix/";
-	public String createContainer(Container container) {
+
+	private String pathOfDockerFiles="/helix/servers/";
+	
+	public String createContainer(String login, Container container) {
 		String id = null ;
 		if(container.getImage().equals("tomcat")){
-			id=TomcatManager.createTomcat(container);
-			//OLD VERSION
-			//id=id.substring(0,id.length()-1);
+			id=TomcatManager.createTomcat(login,container);
 			container.setIdDocker(id);
 			container.setStatus("created");
 		}
 		else if(container.getImage().equals("mysql")){
 			id=MysqlManager.createMysql(container);
-			//OLD VERSION
-			//id=id.substring(0,id.length()-1);
 			container.setIdDocker(id);
 			container.setStatus("created");
 		}
 		return id;
 	}
-	
+
 	public int startContainer(Container container) {
 		String command ="docker start "+container.getIdDocker();
 		String dockerServerConf=pathOfDockerFiles+container.getOwner().getAccount()+".conf";
@@ -63,12 +61,19 @@ public class ContainerManager{
 		return 0;
 	}
 	
-	//NOT IMPLEMENTED YET
-	//g modifie ça yuanbo tu avais mi /bin/bash alors que tu doi mettre docker et les status aussi
 	public int doCheckpoint(Container container) {
 		String command ="docker checkpoint "+container.getIdDocker();
 		String dockerServerConf=pathOfDockerFiles+container.getOwner().getAccount()+".conf";
 		SshManager.execOnDocker(dockerServerConf,command);
+		container.setStatus("checkpointed");
+		return 0;
+	}
+	
+	public int doCheckpointLeaveRunning(Container container) {
+		String command ="docker checkpoint --leave-running "+container.getIdDocker();
+		String dockerServerConf=pathOfDockerFiles+container.getOwner().getAccount()+".conf";
+		SshManager.execOnDocker(dockerServerConf,command);
+		container.setStatus("up(checkpointed)");
 		return 0;
 	}
 	
@@ -76,14 +81,6 @@ public class ContainerManager{
 		String command ="docker restore "+container.getIdDocker();
 		String dockerServerConf=pathOfDockerFiles+container.getOwner().getAccount()+".conf";
 		SshManager.execOnDocker(dockerServerConf,command);
-		container.setStatus("up");
-		return 0;
-	}
-	
-	//ça sert a quoi ça ?
-	public int exportCheckpoint(Container container) {
-		String[] commands = {"docker","checkpoint",container.getIdDocker()};
-		String[] result=ShellManager.execOnShell(commands);
 		container.setStatus("up");
 		return 0;
 	}

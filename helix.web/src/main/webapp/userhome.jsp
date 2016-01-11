@@ -4,7 +4,7 @@
 <head>
 <%@ include file="navbar.jsp" %>
 
-<% Customer c = (Customer)request.getSession().getAttribute("user");
+<% 
 	String name = c.getLogin();
 %>
 
@@ -31,7 +31,7 @@
 					<th>Detail</th>
 					<th>Name</th>
 					<th>Image</th>
-					<th>Port : SSH Port</th>
+					<th>Port : TCP Port</th>
 					<th>RAM</th>
 					<th>CPU</th>
 					<th>Status</th>
@@ -54,7 +54,7 @@ $(function(){
 		
 		actions = "";
 
-		if (d.status === "up") {
+		if (d.status === "up" || d.status === "up(checkpointed)" ) {
 			
 			actions += '<i title="pause" class="success fa fa-pause active"></i>';
 			actions += ' &nbsp' ;
@@ -94,7 +94,6 @@ $(function(){
 				window.location = '/helix.web/ManageContainer?action=unpause&id='+d.idDocker;
 			});
 		}
-
 		return actions;
 	}
 	

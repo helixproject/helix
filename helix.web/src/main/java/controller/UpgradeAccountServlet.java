@@ -11,36 +11,19 @@ import model.Customer;
 import daoImpl.DatabaseConnection;
 import daoImpl.UserDaoImpl;
 
-/**
- * Servlet implementation class UpgradeAccountServlet
- */
 public class UpgradeAccountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public UpgradeAccountServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Customer customer=(Customer)request.getSession(true).getAttribute("user");
 		customer.setAccount("premium");
 		new UserDaoImpl(new DatabaseConnection()).modifyUser(customer);
-		//should migrate his containers
-		
 	}
-
 }

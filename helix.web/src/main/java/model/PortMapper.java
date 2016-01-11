@@ -21,7 +21,6 @@ public class PortMapper {
 	public PortMapper(){}
 	public PortMapper(int localPort){
 		this.localPort=localPort;
-		//externalPort=findFreePort();
 	}
 	public int getLocalPort() {
 		return localPort;
