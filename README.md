@@ -57,7 +57,7 @@ Connect to your MySQL server, and create a database for Helix:
 Finally, copy [helix.web.war](install/helix.web.war) into your Tomcat /webapps
 folder.
 
-# Authors
+## Authors
 
     ~ Helix Team
       Github: https://github.com/helixproject/helix
